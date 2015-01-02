@@ -1,0 +1,13 @@
+Open 'FireFox'
+Goto '<varBaseUrl>'
+Pageset 'HomePage'
+Click SignIn
+Pageset 'HomePage'
+Enter '<varUserId>' in emailAddress
+Enter '<varPassword>' in password
+Click signinButton
+Do this for all Data
+Pageset 'HomePage'
+DisplayText from HelloUser
+Until
+Close 'FireFox'
