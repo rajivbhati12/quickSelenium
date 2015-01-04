@@ -3,6 +3,8 @@ package start;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import base.Action;
 import base.Feature;
 import base.Page;
@@ -21,8 +23,12 @@ public class ThisThread extends Thread implements Runnable{
 		currentStorage = new StorageCollector();		
 		currentStorage.setValue("<varBaseUrl>", "http://www.homedepot.com");
 		currentStorage.setValue("<varScenarioStatus>",true);
-		currentStorage.setValue("<varUserId>","rajivbhati12@gmail.com");
-		currentStorage.setValue("<varPassword>","hunter12");
+		currentStorage.setValue("<varUserId>","sarge1238@gmail.com");
+		
+		//This is temp solution
+		String thisPassword= JOptionPane.showInputDialog("Please input password: ");
+		
+		currentStorage.setValue("<varPassword>",thisPassword);
 		currentStorage.setValue("<varCurrentPage>",(Page)null);
 		currentStorage.setValue("<varStepFormation>",true);
 		currentStorage.setValue("<varBasePath>",currentBasePath);
