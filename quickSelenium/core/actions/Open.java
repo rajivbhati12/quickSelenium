@@ -7,10 +7,10 @@ import start.ThisThread;
 import base.Action;
 import driver.Browser;
 
+@SuppressWarnings("unchecked")
 public class Open extends Action{
 	String line = null;
-
-	@SuppressWarnings("unchecked")
+	
 	public Open(ThisThread currentThread) {
 		line = ((List<String>) currentThread.getStorage().getObject("<varFeatureList>")).remove(0);	
 	}

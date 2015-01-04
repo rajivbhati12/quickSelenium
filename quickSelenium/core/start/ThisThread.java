@@ -10,6 +10,7 @@ import base.Feature;
 import base.Page;
 import data.StorageCollector;
 
+@SuppressWarnings("unchecked")
 public class ThisThread extends Thread implements Runnable{	
 //	private List<Object> mainObject = new ArrayList<Object>();
 
@@ -31,12 +32,12 @@ public class ThisThread extends Thread implements Runnable{
 		currentStorage.setValue("<varPassword>",thisPassword);
 		currentStorage.setValue("<varCurrentPage>",(Page)null);
 		currentStorage.setValue("<varStepFormation>",true);
-		currentStorage.setValue("<varBasePath>",currentBasePath);
+		currentStorage.setValue("<varBasePath>",currentBasePath);		
 		currentStorage.setValue("<varFeature>","NewAppliances");
 		currentStorage.setValue("<varFeatureList>",(new Feature(this)).getFeatureList());
 		currentStorage.setValue("<varStepFormation>",true);
 
-		@SuppressWarnings("unchecked")
+		
 		List<String> featureList = (List<String>) currentStorage.getObject("<varFeatureList>"); 	
 		if(! featureList.get(0).equalsIgnoreCase("Error")){
 			List<Action> actions = new ArrayList<Action>();

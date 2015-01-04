@@ -38,7 +38,7 @@ public class StorageCollector {
 	public void setValue(String variableName,Boolean variableValue)
 	{
 		this.variables.put(variableName.toLowerCase(), variableValue);
-	}
+	}	
 	public String getString(String variableName){
 		return (String) this.getObject(variableName.toLowerCase());
 	}
@@ -48,17 +48,14 @@ public class StorageCollector {
 	public Boolean getBoolean(String variableName){
 		return ((Boolean) this.getObject(variableName.toLowerCase())).booleanValue(); 
 	}
-	@SuppressWarnings("finally")
 	public Object getObject(String variableName)
 	{	
 		Object value = variableName;
-		try{
-			value = this.variables.get(variableName.toLowerCase());
-		}
-		catch(Exception e){
-			System.out.println("Variable <" + variableName + "> not found in the Storage.");
-		}
-		finally{
+		if(this.variables.containsKey(variableName.toLowerCase()))
+			return this.variables.get(variableName.toLowerCase());
+		else
+		{
+//			System.out.println("Variable <" + variableName + "> not found in the Storage.");
 			return value;
 		}
 	}	

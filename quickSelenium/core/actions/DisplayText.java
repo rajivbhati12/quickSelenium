@@ -12,12 +12,12 @@ public class DisplayText extends Action{
 
 	@SuppressWarnings("unchecked")
 	public DisplayText(ThisThread currentThread) {
-		line = ((List<String>) currentThread.getStorage().getObject("<varFeatureList>")).remove(0);	
+		this.line = ((List<String>) currentThread.getStorage().getObject("<varFeatureList>")).remove(0);	
 	}
 	
-	public String run(ThisThread thisThread) {
+	public String run(ThisThread currentThread) {
 		try{			
-			WebElement CurrentObject = new Element(thisThread).getElement(this.getLastToken());
+			WebElement CurrentObject = new Element(currentThread).getElement(this.getLastToken());
 			System.out.println(CurrentObject.getText());
 			return null;
 		}

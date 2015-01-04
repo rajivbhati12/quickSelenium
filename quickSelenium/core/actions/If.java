@@ -1,30 +1,29 @@
 package actions;
 
+import java.util.ArrayList;
 import java.util.List;
-
-import org.openqa.selenium.WebElement;
 
 import start.ThisThread;
 import base.Action;
 import base.ActionCollector;
-import base.Element;
 
+@SuppressWarnings("unchecked")
 public class If extends Action{
-	String line = null;
-
-	public If(List<String> lines){	
-		line = lines.remove(0);
+	private String line = null;
+	private List<Action> ifActions = new ArrayList<Action>();
+	
+	public If(ThisThread currentThread) {
+		this.line = ((List<String>) currentThread.getStorage().getObject("<varFeatureList>")).remove(0);	
 		ActionCollector currentCollector = new ActionCollector();
-//		currentCollector.getCollection(currentThread, "end");
-		
-		
-		
+		this.ifActions = currentCollector.getCollection(currentThread, "end");		
 	}
 	
-	public String run(ThisThread thisThread) {
-		try{			
-			WebElement CurrentObject = new Element(thisThread).getElement(this.getLastToken());			
-			CurrentObject.click();
+	public String run(ThisThread currentThread) {
+		try{
+			List<String> currentDataList = this.getData(currentThread);
+			if(currentDataList.get(0).equalsIgnoreCase(currentDataList.get(1)))
+				for(Action currentAction : ifActions)
+					currentAction.run(currentThread);			
 			return null;
 		}
 		catch(Exception e)

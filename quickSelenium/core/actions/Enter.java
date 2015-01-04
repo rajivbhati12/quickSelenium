@@ -18,7 +18,7 @@ public Enter(ThisThread currentThread) {
 		try{			
 			WebElement CurrentObject = new Element(currentThread).getElement(this.getLastToken());			
 			CurrentObject.click();
-			CurrentObject.sendKeys(this.getData(currentThread));
+			CurrentObject.sendKeys(this.getData(currentThread).get(0));
 			CurrentObject.click();
 			return null;
 		}

@@ -13,7 +13,7 @@ public class ActionCollector{
 	public List<Action> getCollection(ThisThread currentThread, String endAction){		
 		List<String> lines = ((List<String>) currentThread.getStorage().getObject("<varFeatureList>"));
 		while(! lines.get(0).equalsIgnoreCase(endAction))
-			currentActionList.add(Action.createAction(currentThread));
+			this.currentActionList.add(Action.createAction(currentThread));
 		if(lines.get(0).equalsIgnoreCase(endAction))
 			lines.remove(0);
 		return this.currentActionList;

@@ -6,8 +6,9 @@ Pageset 'HomePage'
 Enter '<varUserId>' in emailAddress
 Enter '<varPassword>' in password
 Click signinButton
-Do this for all Data
 Pageset 'HomePage'
+GetText into '<varUserName>' from HelloUser
+If '<varUserName>' is 'Hello This,'
 DisplayText from HelloUser
-Until
+End
 Close 'FireFox'

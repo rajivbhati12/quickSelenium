@@ -7,35 +7,16 @@ import actions.Click;
 import actions.Close;
 import actions.DisplayText;
 import actions.Enter;
+import actions.GetText;
 import actions.Goto;
+import actions.If;
 import actions.Open;
 import actions.PageSet;
-import data.StorageCollector;
 import data.TokenCollector;
-
+@SuppressWarnings("unchecked")
 abstract public class Action {
 //	public static seleniumTest.Page CurrentPage;	
 	
-	public enum Actions 
-	{
-	    CLICK,
-	    ENTER,
-	    EXIST,
-	    DOUBLECLICK,
-	    ENABLED,
-	    TYPE,
-	    SYSTEM,
-	    PAGESET,
-	    VERIFYTEXT,
-	    DO,
-	    OPEN,
-	    CLOSE,
-	    GOTO,
-	    DISPLAYTEXT,
-	    NOTFOUND
-		    
-	}
-
 	public Action() {
 		// TODO Auto-generated constructor stub
 	}
@@ -46,32 +27,34 @@ abstract public class Action {
 	
 	abstract public String getLine();
 	
-	@SuppressWarnings("unchecked")
 	public static Action createAction(ThisThread currentThread) {
 		currentThread.getStorage().setValue("varStepFormation", true);
 		List<String> lines = (List<String>) currentThread.getStorage().getObject("<varFeatureList>");
-		Actions tAction = getAction(lines.get(0));
 		
 		
 		
-		switch(tAction){
-			case PAGESET: 
+		switch(getAction(lines.get(0))){
+			case "PAGESET": 
 					return(new PageSet(currentThread));
-			case ENTER:
+			case "ENTER":
 				return(new Enter(currentThread));
-			case CLICK:
-				return(new Click(currentThread));					
+			case "CLICK":
+				return(new Click(currentThread));	
+			case "IF":
+				return(new If(currentThread));
+			case "GETTEXT":
+				return(new GetText(currentThread));					
 //				case DO:
 //					return(new Do(lines));
 //				case VERIFYTEXT:
 //					return(new VerifyText(lines));
-			case OPEN:
+			case "OPEN":
 				return(new Open(currentThread));
-			case CLOSE:
+			case "CLOSE":
 				return(new Close(currentThread));
-			case GOTO:
+			case "GOTO":
 				return(new Goto(currentThread));
-			case DISPLAYTEXT:
+			case "DISPLAYTEXT":
 				return(new DisplayText(currentThread));
 			default:
 				currentThread.getStorage().setValue("varStepFormation", false);
@@ -81,14 +64,13 @@ abstract public class Action {
 		return(null);
 	}
 
-	static Actions getAction(String line) {
-		Actions tAction = null;
+	static String getAction(String line) {
+		String actionName = "NOTFOUND";
 		try{
-			tAction = Actions.valueOf((line.split(" ")[0]).toUpperCase());			
-		}catch(Exception e){
-			tAction = Actions.valueOf("NOTFOUND"); 
+			actionName = (line.split(" ")[0]).toUpperCase();			
+		}catch(Exception e){ 
 		}
-		return(tAction);		
+		return(actionName);		
 	}
 	
 //	public String updateData(String variableName)
@@ -111,10 +93,15 @@ abstract public class Action {
 //	{
 //		return getLine().replaceAll(ColumnHeader, ActualValue);
 //	}
-	public String getData(ThisThread currentThread){
-		String currentData = this.getQuoteRemove(this.getAttributes().get(0));		
-		currentData = currentThread.getStorage().getValueReplace(currentData);
-		return currentData;
+	public List<String> getData(ThisThread currentThread){		
+		List<String> attributeList = this.getAttributes();
+		for(int i = 0 ; i < attributeList.size(); i++)
+		{
+			String currentData = this.getQuoteRemove(attributeList.get(i));
+			currentData = currentThread.getStorage().getValueReplace(currentData);
+			attributeList.set(i,currentData );
+		}
+		return attributeList;
 	}
 	public List<String> getTokens()
 	{
