@@ -1,3 +1,7 @@
+/* ****************************************************************** */
+//Author:	Rajiv Bhati
+//Email:	RajivBhati12@gmail.com
+/* ****************************************************************** */
 package data;
 
 import java.util.HashSet;
@@ -5,16 +9,20 @@ import java.util.List;
 import java.util.Set;
 
 public class VariableFinder {
+	
 	protected String currentData;
 	protected String beginKey;
 	protected String endKey;
+	
 	public VariableFinder(String currentData){
 		this.currentData = currentData;
 	}
+	
 	public void setDelimiter(String beginKey, String endKey){
 		this.beginKey = beginKey;
 		this.endKey = endKey;
 	}
+	
 	public Set<String> findKeys(){
 		Set<String> results = new HashSet();
 		int cursor = 0;
@@ -33,6 +41,7 @@ public class VariableFinder {
 			results.add(key);
 		}
 	}
+	
 	protected int nextKeyIndex(int cursor){
 		int start = this.currentData.indexOf(this.beginKey,cursor);
 		if(start < 0)

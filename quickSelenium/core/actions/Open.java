@@ -1,15 +1,18 @@
+/* ****************************************************************** */
+//Author:	Rajiv Bhati
+//Email:	RajivBhati12@gmail.com
+/* ****************************************************************** */
 package actions;
 
 import java.util.List;
-
 import start.ThisThread;
-
 import base.Action;
 import driver.Browser;
 
 @SuppressWarnings("unchecked")
 public class Open extends Action{
-	String line = null;
+	
+	private String line = null;
 	
 	public Open(ThisThread currentThread) {
 		line = ((List<String>) currentThread.getStorage().getObject("<varFeatureList>")).remove(0);	
@@ -26,6 +29,7 @@ public class Open extends Action{
 			return e.toString();
 		}				
 	}	
+	
 	public String getLine() {
 		return(this.line);
 	}

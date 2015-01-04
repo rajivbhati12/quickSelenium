@@ -1,7 +1,10 @@
+/* ****************************************************************** */
+//Author:	Rajiv Bhati
+//Email:	RajivBhati12@gmail.com
+/* ****************************************************************** */
 package base;
 
 import java.util.List;
-
 import start.ThisThread;
 import actions.Click;
 import actions.Close;
@@ -13,9 +16,9 @@ import actions.If;
 import actions.Open;
 import actions.PageSet;
 import data.TokenCollector;
+
 @SuppressWarnings("unchecked")
 abstract public class Action {
-//	public static seleniumTest.Page CurrentPage;	
 	
 	public Action() {
 		// TODO Auto-generated constructor stub
@@ -30,8 +33,6 @@ abstract public class Action {
 	public static Action createAction(ThisThread currentThread) {
 		currentThread.getStorage().setValue("varStepFormation", true);
 		List<String> lines = (List<String>) currentThread.getStorage().getObject("<varFeatureList>");
-		
-		
 		
 		switch(getAction(lines.get(0))){
 			case "PAGESET": 
@@ -93,6 +94,7 @@ abstract public class Action {
 //	{
 //		return getLine().replaceAll(ColumnHeader, ActualValue);
 //	}
+	
 	public List<String> getData(ThisThread currentThread){		
 		List<String> attributeList = this.getAttributes();
 		for(int i = 0 ; i < attributeList.size(); i++)
@@ -103,19 +105,23 @@ abstract public class Action {
 		}
 		return attributeList;
 	}
+	
 	public List<String> getTokens()
 	{
 		return (new TokenCollector()).getAllAttributes(this.getLine());
 	}
+	
 	public List<String> getAttributes()
 	{
 		return (new TokenCollector()).getAttributes(this.getLine());
 	}
+	
 	public String getLastToken()
 	{
 		List<String> currentTokens = getTokens();
 		return currentTokens.get(currentTokens.size() - 1);
 	}
+	
 	public String getQuoteRemove(String currentData){
 		return currentData.substring(1, currentData.length() - 1);
 	}

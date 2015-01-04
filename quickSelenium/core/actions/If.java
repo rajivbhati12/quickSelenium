@@ -1,14 +1,18 @@
+/* ****************************************************************** */
+//Author:	Rajiv Bhati
+//Email:	RajivBhati12@gmail.com
+/* ****************************************************************** */
 package actions;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import start.ThisThread;
 import base.Action;
 import base.ActionCollector;
 
 @SuppressWarnings("unchecked")
 public class If extends Action{
+	
 	private String line = null;
 	private List<Action> ifActions = new ArrayList<Action>();
 	

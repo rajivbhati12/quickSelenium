@@ -1,16 +1,22 @@
+/* ****************************************************************** */
+//Author:	Rajiv Bhati
+//Email:	RajivBhati12@gmail.com
+/* ****************************************************************** */
 package base;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
 import start.ThisThread;
 
 public class Element {
+	
 	private ThisThread currentThread = null;
+	
 	public Element(ThisThread currentThread) {
 		this.currentThread = currentThread;
 	}	
+	
 	@SuppressWarnings("finally")
 	public WebElement getElement(String currentIdentifierKey)
 	{

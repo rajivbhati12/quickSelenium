@@ -1,16 +1,20 @@
+/* ****************************************************************** */
+//Author:	Rajiv Bhati
+//Email:	RajivBhati12@gmail.com
+/* ****************************************************************** */
 package actions;
 
 import java.util.List;
 import org.openqa.selenium.WebElement;
-
 import start.ThisThread;
 import base.Action;
 import base.Element;
 
+@SuppressWarnings("unchecked")
 public class DisplayText extends Action{
-	String line = null;
-
-	@SuppressWarnings("unchecked")
+	
+	private String line = null;
+	
 	public DisplayText(ThisThread currentThread) {
 		this.line = ((List<String>) currentThread.getStorage().getObject("<varFeatureList>")).remove(0);	
 	}

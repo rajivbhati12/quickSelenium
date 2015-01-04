@@ -1,17 +1,23 @@
+/* ****************************************************************** */
+//Author:	Rajiv Bhati
+//Email:	RajivBhati12@gmail.com
+/* ****************************************************************** */
 package actions;
 
 import java.util.List;
-
 import page.PageList;
 import start.ThisThread;
 import base.Action;
 
+@SuppressWarnings("unchecked")
 public class PageSet extends Action {
-	String line = null;
-	@SuppressWarnings("unchecked")
+	
+	private String line = null;
+	
 	public PageSet(ThisThread currentThread) {
 		line = ((List<String>) currentThread.getStorage().getObject("<varFeatureList>")).remove(0);		
-	}	
+	}
+	
 	public String run(ThisThread currentThread) {
 		try {
 			currentThread.sleep(9000);
@@ -27,6 +33,7 @@ public class PageSet extends Action {
 			return e.toString();
 		}				
 	}
+	
 	public String getLine() {
 		return(this.line);
 	}

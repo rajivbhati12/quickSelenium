@@ -1,12 +1,19 @@
+/* ****************************************************************** */
+//Author:	Rajiv Bhati
+//Email:	RajivBhati12@gmail.com
+/* ****************************************************************** */
 package data;
 
 import java.util.HashMap;
 import java.util.Set;
 
 public class StorageCollector {
+	
 	private HashMap<String, Object> variables = new HashMap<String, Object>();
+	
 	public StorageCollector(){		
 	}
+	
 	public String getValueReplace(String currentData){
 		String returnValue = currentData;
 		VariableFinder currentFinder = new VariableFinder(currentData);
@@ -23,31 +30,34 @@ public class StorageCollector {
 //			listTokens.add(myPattern.group(1));		
 		
 	}
-	public void setValue(String variableName,String variableValue)
-	{
+	public void setValue(String variableName,String variableValue)	{
 		this.variables.put(variableName.toLowerCase(), variableValue);
 	}	
-	public void setValue(String variableName,Integer variableValue)
-	{
+	
+	public void setValue(String variableName,Integer variableValue)	{
 		this.variables.put(variableName.toLowerCase(), variableValue);
 	}
-	public void setValue(String variableName,Object variableValue)
-	{
+	
+	public void setValue(String variableName,Object variableValue)	{
 		this.variables.put(variableName.toLowerCase(), variableValue);
 	}
-	public void setValue(String variableName,Boolean variableValue)
-	{
+	
+	public void setValue(String variableName,Boolean variableValue)	{
 		this.variables.put(variableName.toLowerCase(), variableValue);
 	}	
+	
 	public String getString(String variableName){
 		return (String) this.getObject(variableName.toLowerCase());
 	}
+	
 	public Integer getInteger(String variableName){
 		return (Integer) this.getObject(variableName.toLowerCase());
 	}
+	
 	public Boolean getBoolean(String variableName){
 		return ((Boolean) this.getObject(variableName.toLowerCase())).booleanValue(); 
 	}
+	
 	public Object getObject(String variableName)
 	{	
 		Object value = variableName;

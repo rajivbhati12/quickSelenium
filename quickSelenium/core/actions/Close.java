@@ -1,3 +1,7 @@
+/* ****************************************************************** */
+//Author:	Rajiv Bhati
+//Email:	RajivBhati12@gmail.com
+/* ****************************************************************** */
 package actions;
 
 import java.util.List;
@@ -5,10 +9,11 @@ import org.openqa.selenium.WebDriver;
 import start.ThisThread;
 import base.Action;
 
+@SuppressWarnings("unchecked")
 public class Close extends Action{
+	
 	String line = null;
-
-	@SuppressWarnings("unchecked")
+	
 	public Close(ThisThread currentThread) {
 		line = ((List<String>) currentThread.getStorage().getObject("<varFeatureList>")).remove(0);	
 	}
@@ -23,6 +28,7 @@ public class Close extends Action{
 			return e.toString();
 		}				
 	}	
+	
 	public String getLine() {
 		return(this.line);
 	}

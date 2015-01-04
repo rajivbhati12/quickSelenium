@@ -1,10 +1,11 @@
+/* ****************************************************************** */
+//Author:	Rajiv Bhati
+//Email:	RajivBhati12@gmail.com
+/* ****************************************************************** */
 package start;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.JOptionPane;
-
 import base.Action;
 import base.Feature;
 import base.Page;
@@ -12,7 +13,6 @@ import data.StorageCollector;
 
 @SuppressWarnings("unchecked")
 public class ThisThread extends Thread implements Runnable{	
-//	private List<Object> mainObject = new ArrayList<Object>();
 
 	private StorageCollector currentStorage = null;	
 	
@@ -58,6 +58,7 @@ public class ThisThread extends Thread implements Runnable{
 		System.gc();
 		System.exit(0);
 	}	
+	
 	public StorageCollector getStorage(){
 		return this.currentStorage;
 	}
