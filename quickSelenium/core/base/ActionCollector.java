@@ -5,20 +5,17 @@ import java.util.List;
 
 import start.ThisThread;
 
+@SuppressWarnings("unchecked")
 public class ActionCollector{
 	private List<Action> currentActionList = new ArrayList<Action>();
-//	private String currentLine = "";
 	public ActionCollector(){
 	}
-	public List<Action> getCollection(ThisThread currentThread, String endAction){
-		@SuppressWarnings("unchecked")
-		List<String> lines = (List<String>) currentThread.getStorage().getObject("<varFeatureList>");
-//		currentLine = lines.remove(0);
+	public List<Action> getCollection(ThisThread currentThread, String endAction){		
+		List<String> lines = ((List<String>) currentThread.getStorage().getObject("<varFeatureList>"));
 		while(! lines.get(0).equalsIgnoreCase(endAction))
 			currentActionList.add(Action.createAction(currentThread));
+		if(lines.get(0).equalsIgnoreCase(endAction))
+			lines.remove(0);
 		return this.currentActionList;
 	}
-//	public String getCurrentLine(){
-//		return currentLine;
-//	}
 }
