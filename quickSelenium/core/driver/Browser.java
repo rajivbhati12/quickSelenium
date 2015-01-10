@@ -5,48 +5,41 @@
 package driver;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
+
 import start.ThisThread;
 
 public class Browser  {
 	
 	private ThisThread currentThread = null;	
-	
-	public enum currentMyBrowserTypes 
-	{
-	    FIREFOX,
-	    PHANTOMJS,
-	    NOTFOUND		    
-	}
-	
+
 	public Browser(ThisThread currentThread) {
 		this.currentThread = currentThread;		
 		currentThread.getStorage().setValue("<varMyBrowser>", this.getBrowser());
 	}
 	
-	public WebDriver getBrowser()
+	private WebDriver getBrowser()
 	{
-		currentMyBrowserTypes currentMyBrowserType = this.getMyBrowserType(this.currentThread.getStorage().getString("<varMyBrowserType>"));
+		String currentMyBrowserType = this.currentThread.getStorage().getString("<varMyBrowserType>");
+		String currentSetupPath = this.currentThread.getStorage().getString("<varBasePath>") + "/externalSetup/";
+		
 		switch(currentMyBrowserType){
-		case FIREFOX:
+		case "FIREFOX":
 			return (new FirefoxDriver());
-		case PHANTOMJS:{
+		case "CHROME":
+			System.setProperty("webdriver.chrome.driver", currentSetupPath + "chrome");
+			return (new ChromeDriver());
+		case "INTERNETEXPLORER":
+			System.setProperty("webdriver.ie.driver", currentSetupPath + "IEDriverServer");
+			return (new InternetExplorerDriver());			
+		case "PHANTOMJS":
 			System.setProperty("phantomjs.binary.path", this.currentThread.getStorage().getString("<varBasePath>") + "/phantomjs");
 			return (new PhantomJSDriver());			
-		}	
 		default:
 			return (new FirefoxDriver());
 		}
-	}
-	
-	private currentMyBrowserTypes getMyBrowserType(String currentMyBrowserType) {
-		currentMyBrowserTypes tempMyBrowserType = null;
-		try{
-			tempMyBrowserType = currentMyBrowserTypes.valueOf(currentMyBrowserType.toUpperCase());			
-		}catch(Exception e){
-			tempMyBrowserType = currentMyBrowserTypes.valueOf("NOTFOUND"); 
-		}
-		return(tempMyBrowserType);		
 	}
 }

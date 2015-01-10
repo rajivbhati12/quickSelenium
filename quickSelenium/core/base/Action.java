@@ -5,9 +5,11 @@
 package base;
 
 import java.util.List;
+
 import start.ThisThread;
 import actions.Click;
 import actions.Close;
+import actions.Comment;
 import actions.DisplayText;
 import actions.Enter;
 import actions.GetText;
@@ -57,6 +59,8 @@ abstract public class Action {
 				return(new Goto(currentThread));
 			case "DISPLAYTEXT":
 				return(new DisplayText(currentThread));
+			case "COMMENT":
+				return (new Comment(currentThread));
 			default:
 				currentThread.getStorage().setValue("varStepFormation", false);
 				break;			
@@ -66,9 +70,11 @@ abstract public class Action {
 	}
 
 	static String getAction(String line) {
-		String actionName = "NOTFOUND";
+		String actionName = "COMMENT";
 		try{
-			actionName = (line.split(" ")[0]).toUpperCase();			
+			actionName = (line.split(" ")[0]).toUpperCase();
+			if(actionName.startsWith("'"))
+				actionName = "COMMENT";
 		}catch(Exception e){ 
 		}
 		return(actionName);		

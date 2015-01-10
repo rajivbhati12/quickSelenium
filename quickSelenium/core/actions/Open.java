@@ -21,7 +21,7 @@ public class Open extends Action{
 	public String run(ThisThread currentThread) {
 		try{
 			currentThread.getStorage().setValue("varMyBrowser", this.getData(currentThread));
-			new Browser(currentThread);
+			new Browser(currentThread);			
 			return null;
 		}
 		catch(Exception e)

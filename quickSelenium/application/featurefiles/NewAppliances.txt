@@ -7,6 +7,7 @@ Enter '<varUserId>' in emailAddress
 Enter '<varPassword>' in password
 Click signinButton
 Pageset 'HomePage'
+Frameset 'Testing'
 GetText into '<varUserName>' from HelloUser
 If '<varUserName>' is 'Hello This,'
 DisplayText from HelloUser

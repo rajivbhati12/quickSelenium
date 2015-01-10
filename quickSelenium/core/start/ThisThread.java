@@ -5,7 +5,9 @@
 package start;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.swing.JOptionPane;
+
 import base.Action;
 import base.Feature;
 import base.Page;
@@ -22,9 +24,9 @@ public class ThisThread extends Thread implements Runnable{
 		String currentBasePath = System.getProperty("user.dir").substring(0, System.getProperty("user.dir").lastIndexOf("\\") + 1);
 		
 		currentStorage = new StorageCollector();		
-		currentStorage.setValue("<varBaseUrl>", "http://www.homedepot.com");
+		currentStorage.setValue("<varBaseUrl>", "https://usmail.cognizant.com/");
 		currentStorage.setValue("<varScenarioStatus>",true);
-		currentStorage.setValue("<varUserId>","sarge1238@gmail.com");
+		currentStorage.setValue("<varUserId>","190647");
 		
 		//This is temp solution
 		String thisPassword= JOptionPane.showInputDialog("Please input password: ");

@@ -20,10 +20,12 @@ public class Element {
 	@SuppressWarnings("finally")
 	public WebElement getElement(String currentIdentifierKey)
 	{
-		Page currentPage = (Page)this.currentThread.getStorage().getObject("<varCurrentPage>");
+		Page thisParent = (Page)this.currentThread.getStorage().getObject("<varCurrentPage>");
+		
 		WebDriver currentBrowser = (WebDriver) this.currentThread.getStorage().getObject("<varMyBrowser>");
-		String objectIdentifier = currentPage.getIdentifierName(currentIdentifierKey);
-		String objectValue = currentPage.getIdentifierValue(currentIdentifierKey);
+		
+		String objectIdentifier = thisParent.getIdentifierName(currentIdentifierKey);
+		String objectValue = thisParent.getIdentifierValue(currentIdentifierKey);
 		WebElement ObjectElement = null;
 		try 
 		{

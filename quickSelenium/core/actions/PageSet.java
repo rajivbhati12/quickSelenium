@@ -25,7 +25,8 @@ public class PageSet extends Action {
 			e.printStackTrace();
 		}		
 		try{
-			currentThread.getStorage().setValue("<varCurrentPage>", (new PageList()).getPage(this.getData(currentThread).get(0)));
+			currentThread.getStorage().setValue("<varCurrentPage>", 
+					(new PageList()).getPage(this.getData(currentThread).get(0)));			
 			return null;
 		}
 		catch(Exception e)
